@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="col-sm-12">
+        <h1>Access denied!</h1>
+
+        <p>
+            You have no rights to access this page.
+            <a href="{{ path('app_forum_home') }}">Return to the homepage</a>.
+        </p>
+    </div>
+{% endblock %}

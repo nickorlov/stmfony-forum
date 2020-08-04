@@ -10,6 +10,8 @@ main {
     padding-top: 3rem;
 }
 
-.login-link {
-
+.required:after {
+    content: "*";
+    color: red;
+    margin-left: 5px;
 }

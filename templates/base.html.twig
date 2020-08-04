@@ -30,10 +30,11 @@
                     </li>
                 </ul>
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <span class="text-white mr-sm-2">Hi, {{ user }} • </span>
+                    <span class="text-white mr-sm-2">Hi, {{ app.user.firstName }}! </span>
                     <a class="login-link mr-sm-2" href="{{ path('app_logout') }}">Logout</a>
                 {% else %}
                     <a class="login-link mr-sm-2" href="{{ path('app_login') }}">Login</a>
+                    <a class="login-link mr-sm-2" href="{{ path('app_register') }}">Register</a>
                 {% endif %}
                 <form class="form-inline mt-2 mt-md-0">
                     <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
@@ -46,6 +47,16 @@
 <main role="main">
     <div class="container">
         <div class="row">
+            {% for label, messages in app.flashes %}
+                <div class="col-sm-12 flash-messages-container">
+                    {% for message in messages %}
+                        <div class="alert alert-info flash-{{ label }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
             {% block body %}{% endblock %}
         </div>
     </div>
