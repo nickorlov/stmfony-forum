@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="col-sm-12">
+        <h1 class="h3 mb-3 font-weight-normal">Profile</h1>
+    </div>
+
+    <div class="col-sm-4">
+        {% if app.user.avatar is null %}
+            {% set avatar = 'avatar.png' %}
+        {% else %}
+            {% set avatar = app.user.avatar %}
+        {% endif %}
+        <img src="{{ asset('images/avatars/' ~ avatar ) }}" class="img-thumbnail"
+             alt="{{ app.user.firstName }}'s avatar">
+    </div>
+
+    <div class="col-sm-8">
+        <h2>{{ app.user.firstName }} {{ app.user.lastName }}</h2>
+        <div><b>Email:</b> {{ app.user.email }}</div>
+        <div><b>City:</b> {{ app.user.city }}</div>
+        <div><b>Age:</b> {{ app.user.age }}</div>
+        <div><b>Gender:</b> {{ app.user.gender }}</div>
+        <hr>
+        {{ form(form) }}
+    </div>
+
+{% endblock %}
