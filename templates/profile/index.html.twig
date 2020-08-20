@@ -4,6 +4,15 @@
 
     <div class="col-sm-12">
         <h1 class="h3 mb-3 font-weight-normal">Profile</h1>
+        {% if not form.vars.valid %}
+            <ul>
+                {% for child in form.children %}
+                    {% for error in child.vars.errors %}
+                        <li class="alert alert-danger">{{ error.message }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        {% endif %}
     </div>
 
     <div class="col-sm-4">
@@ -23,7 +32,15 @@
         <div><b>Age:</b> {{ app.user.age }}</div>
         <div><b>Gender:</b> {{ app.user.gender }}</div>
         <hr>
-        {{ form(form) }}
+        {{ form_start(form) }}
+        {{ form_row(form.firstName) }}
+        {{ form_row(form.lastName) }}
+        {{ form_row(form.avatar) }}
+        {{ form_row(form.age) }}
+        {{ form_row(form.gender) }}
+        {{ form_row(form.city) }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+        {{ form_end(form) }}
     </div>
 
 {% endblock %}
